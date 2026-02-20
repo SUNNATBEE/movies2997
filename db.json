@@ -1,0 +1,175 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "phone": "+998901234567",
+      "password": "password123",
+      "name": "Foydalanuvchi",
+      "surname": "Familiya",
+      "avatar": "https://via.placeholder.com/150"
+    }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "title": "Полярный",
+      "titleUz": "Polyarniy",
+      "rating": 8.3,
+      "topPosition": 100,
+      "year": 2025,
+      "genre": "комедия",
+      "seasons": 3,
+      "country": "Россия",
+      "ageRating": "18+",
+      "description": "Известный в середине 90-х бандит Витя Мясник, давно отошедший от дел и владеющий экофермой, по просьбе бывших подельников соглашается присмотреть на своем заброшенном банковском счете воровской общак.",
+      "poster": "https://via.placeholder.com/400x600",
+      "heroImage": "https://via.placeholder.com/1920x1080",
+      "director": "Михаил Пореченков",
+      "actors": ["Михаил Пореченков", "Актер 2", "Актер 3"],
+      "audioTracks": ["Русский"],
+      "subtitles": [],
+      "isRentable": true,
+      "rentPrice": 10000,
+      "rentDuration": 48
+    },
+    {
+      "id": 2,
+      "title": "Ганнибал",
+      "titleUz": "Hannibal",
+      "rating": 9.1,
+      "topPosition": 50,
+      "year": 2013,
+      "genre": "триллер",
+      "seasons": 3,
+      "country": "Америка",
+      "ageRating": "18+",
+      "description": "Уилл Грэм - одаренный профайлер, который вместе с ФБР разыскивает серийного убийцу.",
+      "poster": "https://via.placeholder.com/400x600",
+      "heroImage": "https://via.placeholder.com/1920x1080",
+      "director": "Брайан Фуллер",
+      "actors": ["Мэдс Миккельсен", "Хью Дэнси"],
+      "audioTracks": ["Русский", "English"],
+      "subtitles": ["Русский", "English"],
+      "isRentable": false,
+      "rentPrice": 0,
+      "rentDuration": 0
+    }
+  ],
+  "episodes": [
+    {
+      "id": 1,
+      "movieId": 1,
+      "season": 1,
+      "episode": 1,
+      "title": "1 серия",
+      "duration": "41 мин",
+      "thumbnail": "https://via.placeholder.com/400x225",
+      "videoUrl": "https://example.com/video1.mp4"
+    },
+    {
+      "id": 2,
+      "movieId": 1,
+      "season": 1,
+      "episode": 2,
+      "title": "2 серия",
+      "duration": "42 мин",
+      "thumbnail": "https://via.placeholder.com/400x225",
+      "videoUrl": "https://example.com/video2.mp4"
+    },
+    {
+      "id": 3,
+      "movieId": 2,
+      "season": 1,
+      "episode": 1,
+      "title": "1 серия",
+      "duration": "45 мин",
+      "thumbnail": "https://via.placeholder.com/400x225",
+      "videoUrl": "https://example.com/video3.mp4"
+    },
+    {
+      "id": 4,
+      "movieId": 2,
+      "season": 1,
+      "episode": 2,
+      "title": "2 серия",
+      "duration": "44 мин",
+      "thumbnail": "https://via.placeholder.com/400x225",
+      "videoUrl": "https://example.com/video4.mp4"
+    }
+  ],
+  "tvChannels": [
+    {
+      "id": 1,
+      "name": "ZO'R TV",
+      "category": "Спортивные",
+      "logo": "https://via.placeholder.com/200x200",
+      "description": "Спортивный канал с трансляциями футбольных матчей",
+      "streamUrl": "https://example.com/stream1.m3u8",
+      "schedule": [
+        {
+          "date": "2025-12-19",
+          "time": "20:00",
+          "title": "FC Barcelona vs Real Madrid | UEFA Champions League"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sevimli",
+      "category": "Детские",
+      "logo": "https://via.placeholder.com/200x200",
+      "description": "Детский развлекательный канал",
+      "streamUrl": "https://example.com/stream2.m3u8",
+      "schedule": []
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "movieId": 2,
+      "title": "Ганнибал",
+      "titleEn": "Hannibal",
+      "thumbnail": "https://via.placeholder.com/400x700",
+      "videoUrl": "https://example.com/reel1.mp4",
+      "likes": 19200,
+      "shares": 150
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": 1,
+      "name": "Only Movies",
+      "days": 30,
+      "viewsPerDay": 3,
+      "price": 49990,
+      "currency": "UZS"
+    }
+  ],
+  "rentedMovies": [
+    {
+      "id": 1,
+      "userId": 1,
+      "movieId": 1,
+      "rentDate": "2025-12-22",
+      "expireDate": "2025-12-24"
+    }
+  ],
+  "savedMovies": [
+    {
+      "id": 1,
+      "userId": 1,
+      "movieId": 2
+    }
+  ],
+  "watchHistory": [
+    {
+      "id": 1,
+      "userId": 1,
+      "movieId": 2,
+      "episodeId": 4,
+      "lastWatchedTime": "00:15:30",
+      "totalDuration": "00:44:00"
+    }
+  ]
+}
