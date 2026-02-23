@@ -122,7 +122,7 @@ fetch('/db.json')
 ## 🎨 Dizayn
 
 ### Header:
-- Dark grey fon (#1a1a1a yoki o'xshash)
+- Dark gey fon (#1a1a1a yoki o'xshash)
 - Oq matnlar
 - Qizil logo
 - Hover effektlar (linklar va tugmalar)
