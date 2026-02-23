@@ -29,7 +29,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div>
+    <div className='pt-20'>
       {/* Aziz - Hero section komponentini yarating */}
       <h1>Hero Section - Aziz ishlayapti</h1>
     </div>
