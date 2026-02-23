@@ -63,13 +63,170 @@ src/
     "movieId": 2,
     "title": "Ганнибал",
     "titleEn": "Hannibal",
-    "thumbnail": "...",
-    "videoUrl": "...",
+    "thumbnail": "https://images.unsplash.com/...",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     "likes": 19200,
-    "shares": 150
+    "shares": 150,
+    "description": "Лучшие моменты из сериала Ганнибал"
   }
 ]
 ```
+
+### 🎬 Reels Video URL dan Foydalanish
+
+**db.json da har bir reel uchun `videoUrl` bor:**
+
+```json
+{
+  "id": 1,
+  "movieId": 2,
+  "title": "Ганнибал",
+  "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+  "likes": 19200,
+  "shares": 150
+}
+```
+
+**Reels komponentida ishlatish:**
+
+```javascript
+// 1. db.json dan reels ma'lumotlarini olish
+fetch('/db.json')
+  .then(res => res.json())
+  .then(data => {
+    const reels = data.reels;
+    
+    // 2. Har bir reel uchun videoUrl bor
+    reels.forEach(reel => {
+      console.log(reel.title, reel.videoUrl);
+    });
+  });
+```
+
+**To'liq Misol - ReelsItem Komponenti:**
+
+```javascript
+import { useState, useRef, useEffect } from 'react';
+
+const ReelsItem = ({ reel }) => {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Video avtomatik o'ynatish
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Video ko'rinishda bo'lsa - o'ynat
+            videoRef.current?.play();
+            setIsPlaying(true);
+          } else {
+            // Video ko'rinishdan chiqsa - to'xtat
+            videoRef.current?.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="relative w-full h-screen flex items-center justify-center">
+      {/* Video Player */}
+      <video
+        ref={videoRef}
+        src={reel.videoUrl}  // ← Reel video URL dan foydalanish
+        className="w-full h-full object-cover"
+        loop
+        muted={!isPlaying}
+        playsInline
+      />
+
+      {/* Video ma'lumotlari */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+        <h3 className="text-xl font-bold">{reel.title}</h3>
+        <p className="text-sm">{reel.description}</p>
+      </div>
+
+      {/* Like va Share */}
+      <div className="absolute right-4 bottom-20 flex flex-col gap-4">
+        <button>
+          ❤️ {reel.likes}
+        </button>
+        <button>
+          🔗 {reel.shares}
+        </button>
+      </div>
+    </div>
+  );
+};
+```
+
+**Reels Sahifasida Ishlatish:**
+
+```javascript
+import { useState, useEffect } from 'react';
+import ReelsItem from '../components/Reels/ReelsItem';
+
+const Reels = () => {
+  const [reels, setReels] = useState([]);
+
+  useEffect(() => {
+    // db.json dan reels ma'lumotlarini olish
+    fetch('/db.json')
+      .then(res => res.json())
+      .then(data => {
+        setReels(data.reels);
+      });
+  }, []);
+
+  return (
+    <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
+      {reels.map(reel => (
+        <div key={reel.id} className="snap-start h-screen">
+          <ReelsItem reel={reel} />
+        </div>
+      ))}
+    </div>
+  );
+};
+```
+
+### ⚠️ Muhim Eslatmalar:
+
+1. **Reels Video URL alohida:**
+   - Reels uchun alohida video URL lar
+   - Episodes dan farq qiladi
+   - Qisqa videolar (30 soniya - 2 daqiqa)
+
+2. **Video format:**
+   - MP4 formatida
+   - Vertikal video (9:16 nisbat)
+   - HTML5 video elementida to'g'ridan-to'g'ri ishlaydi
+
+3. **Avtomatik o'ynatish:**
+   - Reel ko'rinishda bo'lsa - avtomatik o'ynaydi
+   - Boshqa reelga o'tilsa - avtomatik to'xtaydi
+   - Intersection Observer ishlating
+
+4. **Error handling:**
+   ```javascript
+   <video 
+     src={reel.videoUrl}
+     onError={(e) => {
+       console.error('Reel video yuklanmadi:', e);
+       // Xato xabari ko'rsatish yoki fallback video
+     }}
+   />
+   ```
 
 **Misol:**
 ```javascript
@@ -79,6 +236,9 @@ fetch('/db.json')
   .then(data => {
     const reels = data.reels;
     // Har bir reel uchun komponent yaratish
+    reels.forEach(reel => {
+      console.log(reel.title, reel.videoUrl, reel.likes);
+    });
   });
 ```
 
