@@ -90,7 +90,99 @@ src/
   - `episode` - Qaysi qism
   - `title` - Qism nomi
   - `duration` - Davomiyligi
-  - `videoUrl` - Video manzili
+  - `videoUrl` - **Video manzili (MUHIM!)**
+  - `thumbnail` - Qism rasmi
+  - `description` - Qism tavsifi
+
+### 🎬 Video URL dan Foydalanish
+
+**db.json da har bir episode uchun `videoUrl` bor:**
+
+```json
+{
+  "id": 1,
+  "movieId": 1,
+  "title": "1 серия",
+  "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "duration": "41 мин"
+}
+```
+
+**Video Player da ishlatish:**
+
+```javascript
+// 1. db.json dan episode ma'lumotlarini olish
+fetch('/db.json')
+  .then(res => res.json())
+  .then(data => {
+    const episodes = data.episodes;
+    const episode = episodes.find(ep => ep.id === 1);
+    
+    // 2. Video URL ni olish
+    const videoUrl = episode.videoUrl;
+    
+    // 3. HTML5 video elementida ishlatish
+    // <video src={videoUrl} controls />
+  });
+```
+
+**To'liq Misol:**
+
+```javascript
+import { useState, useEffect, useRef } from 'react';
+
+const VideoPlayer = ({ episodeId }) => {
+  const [episode, setEpisode] = useState(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // db.json dan episode ma'lumotlarini olish
+    fetch('/db.json')
+      .then(res => res.json())
+      .then(data => {
+        const ep = data.episodes.find(e => e.id === episodeId);
+        setEpisode(ep);
+      });
+  }, [episodeId]);
+
+  if (!episode) return <div>Yuklanmoqda...</div>;
+
+  return (
+    <div>
+      <h2>{episode.title}</h2>
+      <video 
+        ref={videoRef}
+        src={episode.videoUrl}  // ← Video URL dan foydalanish
+        controls
+        className="w-full"
+      />
+      <p>Davomiyligi: {episode.duration}</p>
+    </div>
+  );
+};
+```
+
+### ⚠️ Muhim Eslatmalar:
+
+1. **Video URL to'g'ri ishlaydi:**
+   - db.json dagi barcha `videoUrl` lar ishlaydigan test videolar
+   - Google Cloud Storage dan test videolar
+   - Haqiqiy loyihada o'z video hostingingizdan foydalanasiz
+
+2. **Video format:**
+   - MP4 formatida
+   - HTML5 video elementida to'g'ridan-to'g'ri ishlaydi
+
+3. **Error handling:**
+   ```javascript
+   <video 
+     src={episode.videoUrl}
+     onError={(e) => {
+       console.error('Video yuklanmadi:', e);
+       // Xato xabari ko'rsatish
+     }}
+   />
+   ```
 
 **Misol:**
 ```javascript
@@ -101,6 +193,11 @@ fetch('/db.json')
     const episodes = data.episodes;
     // Faqat bitta filmning qismlarini olish
     const movieEpisodes = episodes.filter(ep => ep.movieId === 1);
+    
+    // Har bir episode uchun videoUrl bor
+    movieEpisodes.forEach(ep => {
+      console.log(ep.title, ep.videoUrl);
+    });
   });
 ```
 

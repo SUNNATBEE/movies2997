@@ -7,7 +7,7 @@
       "password": "password123",
       "name": "Foydalanuvchi",
       "surname": "Familiya",
-      "avatar": "https://via.placeholder.com/150"
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop"
     }
   ],
   "movies": [
@@ -23,8 +23,8 @@
       "country": "Россия",
       "ageRating": "18+",
       "description": "Известный в середине 90-х бандит Витя Мясник, давно отошедший от дел и владеющий экофермой, по просьбе бывших подельников соглашается присмотреть на своем заброшенном банковском счете воровской общак.",
-      "poster": "https://via.placeholder.com/400x600",
-      "heroImage": "https://via.placeholder.com/1920x1080",
+      "poster": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop",
+      "heroImage": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&h=1080&fit=crop",
       "director": "Михаил Пореченков",
       "actors": ["Михаил Пореченков", "Актер 2", "Актер 3"],
       "audioTracks": ["Русский"],
@@ -45,8 +45,8 @@
       "country": "Америка",
       "ageRating": "18+",
       "description": "Уилл Грэм - одаренный профайлер, который вместе с ФБР разыскивает серийного убийцу.",
-      "poster": "https://via.placeholder.com/400x600",
-      "heroImage": "https://via.placeholder.com/1920x1080",
+      "poster": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop",
+      "heroImage": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&h=1080&fit=crop",
       "director": "Брайан Фуллер",
       "actors": ["Мэдс Миккельсен", "Хью Дэнси"],
       "audioTracks": ["Русский", "English"],
@@ -64,8 +64,9 @@
       "episode": 1,
       "title": "1 серия",
       "duration": "41 мин",
-      "thumbnail": "https://via.placeholder.com/400x225",
-      "videoUrl": "https://example.com/video1.mp4"
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "description": "Полярный - 1 серия. Витя Мясник возвращается к старой жизни."
     },
     {
       "id": 2,
@@ -74,8 +75,9 @@
       "episode": 2,
       "title": "2 серия",
       "duration": "42 мин",
-      "thumbnail": "https://via.placeholder.com/400x225",
-      "videoUrl": "https://example.com/video2.mp4"
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "description": "Полярный - 2 серия. Продолжение истории Вити Мясника."
     },
     {
       "id": 3,
@@ -84,8 +86,9 @@
       "episode": 1,
       "title": "1 серия",
       "duration": "45 мин",
-      "thumbnail": "https://via.placeholder.com/400x225",
-      "videoUrl": "https://example.com/video3.mp4"
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "description": "Ганнибал - 1 серия. Уилл Грэм начинает расследование."
     },
     {
       "id": 4,
@@ -94,8 +97,31 @@
       "episode": 2,
       "title": "2 серия",
       "duration": "44 мин",
-      "thumbnail": "https://via.placeholder.com/400x225",
-      "videoUrl": "https://example.com/video4.mp4"
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "description": "Ганнибал - 2 серия. Встреча с доктором Лектером."
+    },
+    {
+      "id": 5,
+      "movieId": 1,
+      "season": 1,
+      "episode": 3,
+      "title": "3 серия",
+      "duration": "43 мин",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "description": "Полярный - 3 серия. Новые приключения в Полярном."
+    },
+    {
+      "id": 6,
+      "movieId": 2,
+      "season": 1,
+      "episode": 3,
+      "title": "3 серия",
+      "duration": "46 мин",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "description": "Ганнибал - 3 серия. Психологическая игра начинается."
     }
   ],
   "tvChannels": [
@@ -103,7 +129,7 @@
       "id": 1,
       "name": "ZO'R TV",
       "category": "Спортивные",
-      "logo": "https://via.placeholder.com/200x200",
+      "logo": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop",
       "description": "Спортивный канал с трансляциями футбольных матчей",
       "streamUrl": "https://example.com/stream1.m3u8",
       "schedule": [
@@ -118,7 +144,7 @@
       "id": 2,
       "name": "Sevimli",
       "category": "Детские",
-      "logo": "https://via.placeholder.com/200x200",
+      "logo": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop",
       "description": "Детский развлекательный канал",
       "streamUrl": "https://example.com/stream2.m3u8",
       "schedule": []
@@ -130,10 +156,55 @@
       "movieId": 2,
       "title": "Ганнибал",
       "titleEn": "Hannibal",
-      "thumbnail": "https://via.placeholder.com/400x700",
-      "videoUrl": "https://example.com/reel1.mp4",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=700&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
       "likes": 19200,
-      "shares": 150
+      "shares": 150,
+      "description": "Лучшие моменты из сериала Ганнибал"
+    },
+    {
+      "id": 2,
+      "movieId": 1,
+      "title": "Полярный",
+      "titleEn": "Polar",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=700&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+      "likes": 15400,
+      "shares": 230,
+      "description": "Захватывающие сцены из Полярного"
+    },
+    {
+      "id": 3,
+      "movieId": 2,
+      "title": "Ганнибал - Трейлер",
+      "titleEn": "Hannibal Trailer",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=700&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+      "likes": 22100,
+      "shares": 340,
+      "description": "Официальный трейлер сериала Ганнибал"
+    },
+    {
+      "id": 4,
+      "movieId": 1,
+      "title": "Полярный - За кадром",
+      "titleEn": "Polar Behind the Scenes",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=700&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "likes": 12800,
+      "shares": 180,
+      "description": "Как снимали сериал Полярный"
+    },
+    {
+      "id": 5,
+      "movieId": 2,
+      "title": "Ганнибал - Интервью",
+      "titleEn": "Hannibal Interview",
+      "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=700&fit=crop",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
+      "likes": 18900,
+      "shares": 290,
+      "description": "Интервью с актерами сериала Ганнибал"
     }
   ],
   "subscriptions": [
