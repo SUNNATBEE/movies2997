@@ -1,171 +1,137 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { IoSearch } from "react-icons/io5";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineClose } from "react-icons/ai";
-import { UserCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import LanguageSelector from "./LanguageSelector";
-import SignUpButton from "./SignUpButton";
-import logoSvg from "../../assets/Logo.svg";
+/**
+ * ============================================
+ * HEADER KOMPONENTI
+ * ============================================
+ * 
+ * O'QUVCHI: Aziz
+ * VAZIFA: Header (sarlavha) qismini yaratish
+ * 
+ * Bu komponent har bir sahifaning yuqori qismida ko'rinadi.
+ * 
+ * KERAKLI ELEMENTLAR:
+ * - StarCinema logo (chapda)
+ * - Navigatsiya linklari (markazda): Главная, TV каналы, Фильмы, Reels
+ * - Ikonkalar va tugmalar (o'ngda): Search, Globe, User, "Войти"
+ * 
+ * RESPONSIVE:
+ * - Desktop: Barcha elementlar ko'rinadi
+ * - Mobil: Hamburger menu ko'rsatiladi
+ * 
+ * FAYL: src/components/Header/Header.jsx
+ */
 
-const navItems = [
-  { href: "/", label: "Bosh sahifa", key: "home" },
-  { href: "/tv-channels", label: "TV Kanallar", key: "tv-channels" },
-  { href: "/movies", label: "Filmlar", key: "movies" },
-  { href: "/reels", label: "Reels", key: "reels" },
-];
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import Navigation from './Navigation'
+import SearchBar from './SearchBar'
+import UserMenu from './UserMenu'
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  
-  const location = useLocation();
-  const searchRef = useRef(null);
-
-  const isActive = (href) => 
-    href === "/" ? location.pathname === "/" : location.pathname.startsWith(href);
-
-  // Scroll effekt
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Click outside search
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setIsSearchOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
 
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 py-4 
-        ${isScrolled || isSearchOpen ? "bg-black/60 backdrop-blur-xl shadow-2xl" : "bg-transparent"}`}
-      >
-        <nav className="container mx-auto px-4 grid grid-cols-[auto_1fr_auto] items-center gap-4">
-          
-          {/* LOGO */}
-          <Link to="/" className="block">
-            <img src={logoSvg} alt="Logo" className="h-8 md:h-10 w-auto" />
-          </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-transparent">
+      <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between gap-4">
 
-          {/* DESKTOP MENU & SEARCH */}
-          <div className="relative flex justify-center items-center">
-            <ul className={`hidden lg:flex gap-10 uppercase text-[11px] tracking-widest font-bold transition-all duration-500
-              ${isSearchOpen ? "opacity-0 scale-95 pointer-events-none" : "opacity-100"}`}
-            >
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    className={`pb-1 border-b-2 transition-all ${
-                      isActive(item.href) ? "text-white border-red-600" : "text-white/70 border-transparent hover:text-white"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {/* Logo (chapda) */}
+        <Link to="/" className="flex items-center gap-1.5 flex-shrink-0">
+          <svg className="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2l2.93 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.07-1.01L12 2z" />
+          </svg>
+          <span className="text-white font-bold text-lg tracking-tight">
+            Star<span className="text-red-600">Cinema</span>
+          </span>
+        </Link>
 
-            {/* SEARCH INPUT (Desktop) */}
-            <div
-              ref={searchRef}
-              className={`hidden lg:flex absolute right-0 bg-white items-center rounded-full transition-all duration-500 overflow-hidden
-                ${isSearchOpen ? "w-full h-11 px-6 opacity-100" : "w-0 h-11 opacity-0 pointer-events-none"}`}
-            >
-              <IoSearch size={20} className="text-black/50" />
-              <input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Qidiruv..."
-                className="ml-3 w-full bg-transparent outline-none text-black font-medium text-sm"
+        {/* Navigatsiya (markazda) - Desktop */}
+        <Navigation />
+
+        {/* O'ng tomon - Desktop */}
+        <div className="hidden md:flex items-center gap-4">
+          <SearchBar />
+
+          {/* Globe - til tanlash */}
+          <button className="text-gray-400 hover:text-white transition-colors" aria-label="Til tanlash">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
               />
-              <button onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}>
-                <AiOutlineClose size={18} className="text-black" />
-              </button>
-            </div>
-          </div>
+            </svg>
+          </button>
 
-          {/* RIGHT SIDE */}
-          <div className="flex items-center gap-3">
-            {!isSearchOpen && (
-              <button 
-                onClick={() => setIsSearchOpen(true)}
-                className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"
-              >
-                <IoSearch size={22} />
-              </button>
-            )}
+          {/* User menu */}
+          <UserMenu />
 
-            <div className="hidden lg:block">
-              <LanguageSelector />
-            </div>
-
-            <Link to="/login">
-              <SignUpButton />
-            </Link>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"
-            >
-              <GiHamburgerMenu size={22} />
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      {/* MOBILE SIDEBAR */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-[#0d0d0d] p-6 flex flex-col lg:hidden"
+          {/* Kirish tugmasi */}
+          <Link
+            to="/login"
+            className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-1.5 rounded-md transition-colors duration-200"
           >
-            <div className="flex justify-between items-center mb-10">
-              <img src={logoSvg} className="h-8" alt="Logo" />
-              <button onClick={() => setIsMobileMenuOpen(false)} className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
-                <AiOutlineClose size={24} className="text-white" />
-              </button>
-            </div>
+            Войти
+          </Link>
+        </div>
 
-            <nav className="flex flex-col gap-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-2xl font-bold ${isActive(item.href) ? "text-red-600" : "text-white/60"}`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
-              <LanguageSelector />
-              <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                <SignUpButton />
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
+        {/* Hamburger menu - Mobil */}
+        <button
+          className="md:hidden text-gray-300 hover:text-white transition-colors"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menyu"
+        >
+          {menuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </div>
 
-export default Header;
+      {/* Mobil menyu */}
+      {menuOpen && (
+        <div className="md:hidden bg-black/95 border-t border-gray-800 px-4 py-4 flex flex-col gap-4">
+          <Link 
+            to="/" 
+            className={`text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800 ${location.pathname === '/' ? 'text-white font-semibold' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Главная
+          </Link>
+          <Link 
+            to="/tv-channels" 
+            className={`text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800 ${location.pathname.startsWith('/tv-channels') ? 'text-white font-semibold' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            TV каналы
+          </Link>
+          <Link 
+            to="/movie/1" 
+            className={`text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800 ${location.pathname.startsWith('/movie') ? 'text-white font-semibold' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Фильмы
+          </Link>
+          <Link 
+            to="/reels" 
+            className={`text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800 ${location.pathname === '/reels' ? 'text-white font-semibold' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Reels
+          </Link>
+          <Link 
+            to="/login" 
+            className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-md text-center transition-colors" 
+            onClick={() => setMenuOpen(false)}
+          >
+            Войти
+          </Link>
+        </div>
+      )}
+    </header>
+  )
+}
+
+export default Header
