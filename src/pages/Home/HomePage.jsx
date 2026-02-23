@@ -16,14 +16,12 @@
  */
 
 import React from 'react'
-import Header from '../../components/Header/Header'
 import Hero from '../../components/Hero/Hero'
 
 const HomePage = () => {
   return (
     <div>
       {/* Aziz - Home Page sahifasini yarating */}
-      <Header />
       <Hero />
       {/* Keyinchalik boshqa bo'limlar qo'shiladi */}
     </div>
