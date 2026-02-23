@@ -46,19 +46,35 @@ import ServerError from './pages/Error/ServerError'
 const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
+          {/* ===== ASOSIY SAHIFA ===== */}
           <Route path="/" element={<HomePage />} />
+
+          {/* ===== AUTH SAHIFALARI (Akbar) ===== */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          {/* ===== FOYDALANUVCHI SAHIFALARI (Akbar) ===== */}
           <Route path="/library" element={<Library />} />
           <Route path="/profile" element={<ProfileSettings />} />
+
+          {/* ===== VIDEO PLAYER (Yaxyo) ===== */}
+          {/* id = episodeId (db.json dagi episodes[].id) */}
           <Route path="/watch/:id" element={<WatchPage />} />
+
+          {/* ===== REELS (Hayot) ===== */}
           <Route path="/reels" element={<Reels />} />
+
+          {/* ===== TV KANALLAR (Safina) ===== */}
           <Route path="/tv-channels" element={<TVChannels />} />
           <Route path="/channel/:id" element={<ChannelPage />} />
+
+          {/* ===== FILM DETAIL (Jahon) ===== */}
           <Route path="/movie/:id" element={<MovieDetail />} />
+
+          {/* ===== XATO SAHIFALARI (Sitora) ===== */}
           <Route path="/500" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
